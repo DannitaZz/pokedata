@@ -1,19 +1,26 @@
-import Ŕeact, {useReducer} from 'react';
+import Ŕeact, { useReducer } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Pokelist from './components/pokelist';
-import PaginationControlled from './components/pagination';
-import {reducer, initialState} from './hooks/reducer';
+import { reducer, initialState } from './hooks/reducer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Pokemon from './components/pages/pokemon';
+import Details from './components/pages/details';
+import Favorites from './components/pages/favorites';
+
 
 function App() {
 
- const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <div className="App">
-      <PaginationControlled state={state} dispatch={dispatch} />
-      <Pokelist state={state} dispatch={dispatch}/>
-      <PaginationControlled state={state} dispatch={dispatch} />
+      <BrowserRouter>
+        <Routes>
+          <Route exact path='/' element={<Pokemon state={state} dispatch={dispatch} />} />
+          <Route exact path='/details' element={<Details state={state} dispatch={dispatch} />} />
+          <Route exact path='/favorites' element={<Favorites />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

@@ -9,6 +9,11 @@ import Typography from '@mui/material/Typography';
 
 function Pokelist({ state, dispatch }) {
 
+
+
+    function upperFirstLetter(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
     const bodyRepo = {
         "query": `
     query samplePokeAPIquery {
@@ -50,7 +55,7 @@ function Pokelist({ state, dispatch }) {
     }
         , [])
     return (
-        <div style={{width: '100vw', display: 'flex', flexDirection: 'row', flexFlow: 'row wrap', justifyContent: 'center'}}>
+        <div style={{ width: '100vw', display: 'flex', flexDirection: 'row', flexFlow: 'row wrap', justifyContent: 'center' }}>
             {state && state.currentData.map((pokemon, i) => {
                 return (
                     <Card key={i} sx={{ maxWidth: 600, margin: '5px' }}>
@@ -62,10 +67,10 @@ function Pokelist({ state, dispatch }) {
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div">
-                                {pokemon.name}
+                                {upperFirstLetter(pokemon.name)}
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                {pokemon.pokemon_v2_pokemontypes[0].pokemon_v2_type.name}
+                                {upperFirstLetter(pokemon.pokemon_v2_pokemontypes[0].pokemon_v2_type.name)}
                             </Typography>
                         </CardContent>
                         <CardActions>
