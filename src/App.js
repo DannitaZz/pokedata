@@ -1,23 +1,19 @@
+import Ŕeact, {useReducer} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Pokelist from './components/pokelist';
+import PaginationControlled from './components/pagination';
+import {reducer, initialState} from './hooks/reducer';
 
 function App() {
+
+ const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PaginationControlled state={state} dispatch={dispatch} />
+      <Pokelist state={state} dispatch={dispatch}/>
+      <PaginationControlled state={state} dispatch={dispatch} />
     </div>
   );
 }
