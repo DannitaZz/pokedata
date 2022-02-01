@@ -18,7 +18,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Pokemon state={state} dispatch={dispatch} />} />
           <Route exact path='/details' element={<Details state={state} dispatch={dispatch} />} />
-          <Route exact path='/favorites' element={<Favorites />} />
+          <Route exact path='/favorites' element={<Favorites state={state} dispatch={dispatch} />} />
         </Routes>
       </BrowserRouter>
     </div>
