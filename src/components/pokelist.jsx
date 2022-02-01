@@ -8,14 +8,16 @@ import Typography from '@mui/material/Typography';
 import StarBorderSharpIcon from '@mui/icons-material/StarBorderSharp';
 import StarIcon from '@mui/icons-material/Star';
 
-function Pokelist({ state, data,  dispatch }) {
+function Pokelist({ favs, data, page, pageSize, dispatch }) {
+
+    const pageData = data.slice((page-1)*pageSize, page*pageSize)
 
     function upperFirstLetter(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
     return (
         <div style={{ width: '100vw', display: 'flex', flexDirection: 'row', flexFlow: 'row wrap', justifyContent: 'center' }}>
-            {data && data.map((pokemon, i) => {
+            {pageData && pageData.map((pokemon, i) => {
                 return (
                     <Card key={pokemon.id} sx={{ maxWidth: 600, margin: '5px' }}>
                         <CardMedia
@@ -34,11 +36,10 @@ function Pokelist({ state, data,  dispatch }) {
                         </CardContent>
                         <CardActions>
                             {(() => {
-                                if (state.data[pokemon.id] == state.favs[pokemon.id]) {
-                                    return <StarIcon onClick={(e) => dispatch({ type: 'favs', value: pokemon.id })} />
+                                if (favs.includes(pokemon.id)) {
+                                    return <StarIcon onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
                                 } else {
-                                    console.log(pokemon.id)
-                                    return <StarBorderSharpIcon onClick={(e) => dispatch({ type: 'favs', value: pokemon.id })} />
+                                    return <StarBorderSharpIcon onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
                                 }
                             })()}
                             <Button size="small">Detalles</Button>

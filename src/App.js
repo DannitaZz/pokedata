@@ -16,9 +16,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route exact path='/' element={<Pokemon state={state} dispatch={dispatch} />} />
-          <Route exact path='/details' element={<Details state={state} dispatch={dispatch} />} />
-          <Route exact path='/favorites' element={<Favorites state={state} dispatch={dispatch} />} />
+          <Route exact path='/' element={<Pokemon favs={state.favIds} actionName={'setMainPage'} data={state.data} page={state.mainPage.page} dispatch={dispatch} />} />
+          {/* <Route exact path='/details' element={<Details state={state} dispatch={dispatch} />} /> */}
+          <Route exact path='/favorites' element={<Pokemon favs={state.favIds} actionName={'setFavPage'} data={state.favs} page={state.favPage.page} dispatch={dispatch} />} />
+          {/* <Route exact path='/favorites' element={<Favorites state={state} dispatch={dispatch} />} /> */}
         </Routes>
       </BrowserRouter>
     </div>
