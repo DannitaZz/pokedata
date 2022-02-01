@@ -2,6 +2,12 @@ export const initialState = {
     data: [],
     favs: [],
     favIds: [],
+    pokemon: {
+        name: 'loading',
+        types: [{type: {name: 'loading', url: 'url'}}],
+        stats: [{'base_stat': '50', stat: {name: 'loading', url: 'url'}}, {'base_stat': '50', stat: {name: 'loading', url: 'url'}}, {'base_stat': '50', stat: {name: 'loading', url: 'url'}}, {'base_stat': '50', stat: {name: 'loading', url: 'url'}}, {'base_stat': '50', stat: {name: 'loading', url: 'url'}}, {'base_stat': '50', stat: {name: 'loading', url: 'url'}}],
+        sprites: {other:{'official-artwork': { front_default: 'loading'}}}
+    },
     mainPage: {
         currentData:[],
         page: 1,
@@ -32,6 +38,10 @@ export const reducer = (state, action) => {
             return {...state, mainPage: {...state.mainPage, page: action.page}}  
         case 'setFavPage':
             return {...state, favPage: {...state.favPage, page: action.page}} 
+        case 'getPokemon':
+            const pokemon = action.pokemon;
+            console.log('El pokemon es: ',  pokemon.name)
+            return {...state, pokemon: pokemon}    
         case 'setFav':
             const id = action.value;
             const index = id - 1;

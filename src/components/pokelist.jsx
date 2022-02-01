@@ -7,13 +7,21 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import StarBorderSharpIcon from '@mui/icons-material/StarBorderSharp';
 import StarIcon from '@mui/icons-material/Star';
+import { useNavigate } from "react-router-dom";
+
 
 function Pokelist({ favs, data, page, pageSize, dispatch }) {
 
+    const navigateTo = useNavigate();
     const pageData = data.slice((page-1)*pageSize, page*pageSize)
 
     function upperFirstLetter(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+    function handleClick(e) {
+        const id = e.currentTarget.value
+        console.log('id', id)
+        navigateTo(`details/${id}`);
     }
     return (
         <div style={{ width: '100vw', display: 'flex', flexDirection: 'row', flexFlow: 'row wrap', justifyContent: 'center' }}>
@@ -42,7 +50,7 @@ function Pokelist({ favs, data, page, pageSize, dispatch }) {
                                     return <StarBorderSharpIcon onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
                                 }
                             })()}
-                            <Button size="small">Detalles</Button>
+                            <Button size="small" value={pokemon.id} onClick={(e) => handleClick(e)}>Detalles</Button>
                         </CardActions>
                     </Card>
                 )

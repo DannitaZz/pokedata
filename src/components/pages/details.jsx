@@ -1,11 +1,13 @@
 import  Pokedetails  from "../pokedetails"
 
 
-function Details({state, dispatch}) {
+
+function Details({pokemon, dispatch}) {
+
     return (
         <>
        <h1>Vista detalles</h1>
-      <Pokedetails />
+      <Pokedetails pokemon={pokemon} dispatch={dispatch}/>
       </>
         )
 }
