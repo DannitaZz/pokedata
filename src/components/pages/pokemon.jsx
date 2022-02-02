@@ -5,11 +5,32 @@ import PaginationControlled from "../pagination"
 import Pokelist from "../pokelist"
 import FixedBottomNavigation from '../bottombar';
 
-function Pokemon({favs, actionName, data, page, dispatch}) {
+const nameFilter = (name, data) => (
+  data.filter(item=>(
+      item.name.toLowerCase().includes(name.toLowerCase())
+      )
+  )
+);
+
+const typeFilter = (type, data) => {
+  if(type === 'all'){
+    return data
+  }else{
+    return data.filter(item=>(item.pokemon_v2_pokemontypes[0].pokemon_v2_type.name === type))
+  }
+};
+
+function Pokemon({favs, actionName, data, page, filterState, dispatch}) {
 
   const pokeCount = 898
   const pageSize = 20;
-  const pageCount = Math.round(data.length / pageSize)
+  let filteredData =  data
+  
+  filteredData = nameFilter(filterState.name, filteredData)
+  filteredData = typeFilter(filterState.type, filteredData)
+  console.log(filteredData[34])
+
+  const pageCount = Math.round(filteredData.length / pageSize)
 
     const bodyRepo = {
         "query": `
@@ -53,10 +74,10 @@ function Pokemon({favs, actionName, data, page, dispatch}) {
         , [])
     return (
         <>
-        <ResponsiveAppBar/>
-      <PaginationControlled actionName={actionName} count={pageCount} page={page} page_size ={20} data={data} dispatch={dispatch} />
-      <Pokelist favs={favs} pageSize={pageSize} data={data} page={page} dispatch={dispatch}/>
-      <PaginationControlled actionName={actionName} count={pageCount} page={page} page_size ={20} data={data} dispatch={dispatch} />
+        <ResponsiveAppBar dispatch={dispatch}/>
+      <PaginationControlled actionName={actionName} count={pageCount} page={page} page_size ={20} data={filteredData} dispatch={dispatch} />
+      <Pokelist favs={favs} pageSize={pageSize} data={filteredData} page={page} dispatch={dispatch}/>
+      <PaginationControlled actionName={actionName} count={pageCount} page={page} page_size ={20} data={filteredData} dispatch={dispatch} />
       <FixedBottomNavigation />
       </>
         )

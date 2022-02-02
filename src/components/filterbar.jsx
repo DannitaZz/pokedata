@@ -4,16 +4,25 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import FilterListIcon from '@mui/icons-material/FilterList';
 
-export default function BasicMenu() {
+export default function BasicMenu({dispatch}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (e) => {
     setAnchorEl(null);
   };
 
+  const handleActionClose = (e) => {
+    // console.log(e.target.getAttribute("value")) 
+    dispatch({type:"filterType", value: e.target.getAttribute("value")})
+    return handleClose(e)
+  }
+  function upperFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+  const types = ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting', 'poison', 'ground', 'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy'];
   return (
     <div>
       <Button
@@ -34,14 +43,9 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Generation I</MenuItem>
-        <MenuItem onClick={handleClose}>Generation II</MenuItem>
-        <MenuItem onClick={handleClose}>Generation III</MenuItem>
-        <MenuItem onClick={handleClose}>Generation IV</MenuItem>
-        <MenuItem onClick={handleClose}>Generation V</MenuItem>
-        <MenuItem onClick={handleClose}>Generation VI</MenuItem>
-        <MenuItem onClick={handleClose}>Generation VII</MenuItem>
-        <MenuItem onClick={handleClose}>Generation VIII</MenuItem>
+        {types.map((type) => {
+          return (<MenuItem value={type} onClick={handleActionClose}>{upperFirstLetter(type)}</MenuItem>)
+        })}
       </Menu>
     </div>
   );

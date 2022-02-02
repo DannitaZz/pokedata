@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 const pages = ['Pokémon', 'Favorites'];
 const settings = ['Logout'];
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = ({dispatch}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -123,10 +123,10 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0, display: 'flex'}}>
-            <BasicMenu/>
+            <BasicMenu dispatch={dispatch} />
           </Box>
           <Box sx={{ flexGrow: 0, display: 'flex'}}>
-            <SearchAppBar />
+            <SearchAppBar dispatch={dispatch}/>
           </Box>
           <Box sx={{ flexGrow: 0, display: { xs: 'none', lg: 'flex' } }}>
             <Tooltip title="Open settings">
