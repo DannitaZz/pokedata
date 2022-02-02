@@ -43,8 +43,8 @@ const ResponsiveAppBar = () => {
 
   const navigateToRepo_ = (e) => {
     const { value } =  e.target.innerText;
-    if (e.target.innerText === 'Repositories'){
-          navigateTo('/pokemon');
+    if (e.target.innerText === 'Pokémon'){
+          navigateTo('/');
     }
     else if (e.target.innerText=== 'Favorites') {
           navigateTo('/favorites');

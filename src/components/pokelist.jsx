@@ -21,7 +21,7 @@ function Pokelist({ favs, data, page, pageSize, dispatch }) {
     function handleClick(e) {
         const id = e.currentTarget.value
         console.log('id', id)
-        navigateTo(`details/${id}`);
+        navigateTo(`/${id}`);
     }
     return (
         <div style={{ width: '100vw', display: 'flex', flexDirection: 'row', flexFlow: 'row wrap', justifyContent: 'center' }}>

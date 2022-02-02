@@ -1,3 +1,4 @@
+import ResponsiveAppBar from "../navbar"
 import  Pokedetails  from "../pokedetails"
 
 
@@ -6,6 +7,7 @@ function Details({pokemon, dispatch}) {
 
     return (
         <>
+        <ResponsiveAppBar />
        <h1>Vista detalles</h1>
       <Pokedetails pokemon={pokemon} dispatch={dispatch}/>
       </>
