@@ -49,10 +49,9 @@ function Pokedetails({ pokemon, dispatch }) {
                             alt="pokemon"
                         />
                         <Typography component="div" variant="p" textAlign='center'>
-
                             <hr></hr>
                             Type: {pokemon && pokemon.types.map((type, i)=> {
-                                return (<li key={'t'+ i}>{type.type.name}</li>)
+                                return (<li key={'t' + i}>{type.type.name}</li>)
                             })}
                             <hr></hr>
                             STATS: {pokemon && pokemon.stats.map((stat, i) => {
@@ -60,6 +59,7 @@ function Pokedetails({ pokemon, dispatch }) {
                                     <li key={'p' + i}>{stat.stat.name}: {stat.base_stat}</li>
                                 </>
                             })}
+
 
 
                         </Typography>

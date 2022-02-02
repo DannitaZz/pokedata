@@ -13,19 +13,21 @@ function Pokemon({favs, actionName, data, page, dispatch}) {
 
     const bodyRepo = {
         "query": `
-    query samplePokeAPIquery {
-        pokemon_v2_pokemon {
-          id
-          name
-          pokemon_v2_pokemontypes {
-            pokemon_v2_type {
-              name
+        query samplePokeAPIquery {
+          pokemon_v2_pokemon {
+            id
+            name
+            pokemon_v2_pokemontypes {
+              pokemon_v2_type {
+                name
+                pokemon_v2_generation {
+                  name
+                }
+              }
             }
           }
-          
         }
         
-      }
     `
     }
 

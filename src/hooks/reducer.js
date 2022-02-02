@@ -2,12 +2,6 @@ export const initialState = {
     data: [],
     favs: [],
     favIds: [],
-    pokemon: {
-        name: 'loading',
-        types: [{type: {name: 'loading', url: 'url'}}],
-        stats: [{'base_stat': '50', stat: {name: 'loading', url: 'url'}}, {'base_stat': '50', stat: {name: 'loading', url: 'url'}}, {'base_stat': '50', stat: {name: 'loading', url: 'url'}}, {'base_stat': '50', stat: {name: 'loading', url: 'url'}}, {'base_stat': '50', stat: {name: 'loading', url: 'url'}}, {'base_stat': '50', stat: {name: 'loading', url: 'url'}}],
-        sprites: {other:{'official-artwork': { front_default: 'loading'}}}
-    },
     mainPage: {
         currentData:[],
         page: 1,
@@ -17,7 +11,12 @@ export const initialState = {
         page: 1,
     },
     detailPage: {
-        currentPoke:[],
+        pokemon: {
+            name: 'loading',
+            types: [{type: {name: 'loading', url: 'url'}}],
+            stats: [{'base_stat': '50', stat: {name: 'loading', url: 'url'}}, {'base_stat': '50', stat: {name: 'loading', url: 'url'}}, {'base_stat': '50', stat: {name: 'loading', url: 'url'}}, {'base_stat': '50', stat: {name: 'loading', url: 'url'}}, {'base_stat': '50', stat: {name: 'loading', url: 'url'}}, {'base_stat': '50', stat: {name: 'loading', url: 'url'}}],
+            sprites: {other:{'official-artwork': { front_default: 'loading'}}}
+        },
     }
 }
 
@@ -41,7 +40,7 @@ export const reducer = (state, action) => {
         case 'getPokemon':
             const pokemon = action.pokemon;
             console.log('El pokemon es: ',  pokemon.name)
-            return {...state, pokemon: pokemon}    
+            return {...state, detailPage: {pokemon: pokemon}}    
         case 'setFav':
             const id = action.value;
             const index = id - 1;
@@ -59,6 +58,11 @@ export const reducer = (state, action) => {
                 }
             });
             return {...state, favs: newFavs, favIds: currentFavIds}
+        /* case 'filter':
+            const generation = action.generation;
+            console.log('Generación: ', generation)
+            const filterData = data.filter((pokemon)=> pokemon.pokemon_v2_pokemontypes[0].pokemon_v2_generation.name === generation);
+            return {...state, mainPage: {currentData: filterData}} */
         default:
            return {...state}
     }
