@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path='/' element={<Pokemon favs={state.favIds} actionName={'setMainPage'} data={state.data} page={state.mainPage.page} filterState={state.filterState} dispatch={dispatch} />} />
-          <Route exact path='/:id' element={<Details pokemon={state.detailPage.pokemon} dispatch={dispatch} />} />
+          <Route exact path='/:id' element={<Details pokemon={state.detailPage.pokemon} currentType={state.filterState.type} dispatch={dispatch} />} />
           <Route exact path='/favorites' element={<Pokemon favs={state.favIds} actionName={'setFavPage'} data={state.favs} page={state.favPage.page} filterState={state.filterState} dispatch={dispatch} />} />
           <Route exact path='/login' element={<SignIn />} />
         </Routes>

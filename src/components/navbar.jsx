@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 const pages = ['Pokémon', 'Favorites'];
 const settings = ['Logout'];
 
-const ResponsiveAppBar = ({dispatch}) => {
+const ResponsiveAppBar = ({currentType, dispatch}) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -123,7 +123,7 @@ const ResponsiveAppBar = ({dispatch}) => {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0, display: 'flex'}}>
-            <BasicMenu dispatch={dispatch} />
+            <BasicMenu currentType={currentType} dispatch={dispatch} />
           </Box>
           <Box sx={{ flexGrow: 0, display: 'flex'}}>
             <SearchAppBar dispatch={dispatch}/>

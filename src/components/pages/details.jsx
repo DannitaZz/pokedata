@@ -3,11 +3,11 @@ import  Pokedetails  from "../pokedetails"
 
 
 
-function Details({pokemon, dispatch}) {
+function Details({currentType, pokemon, dispatch}) {
 
     return (
         <>
-        <ResponsiveAppBar dispatch={dispatch}/>
+        <ResponsiveAppBar currentType={currentType} dispatch={dispatch}/>
        <h1>Vista detalles</h1>
       <Pokedetails pokemon={pokemon} dispatch={dispatch}/>
       </>
