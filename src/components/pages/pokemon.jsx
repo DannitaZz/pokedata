@@ -3,6 +3,7 @@ import axios from 'axios';
 import ResponsiveAppBar from "../navbar"
 import PaginationControlled from "../pagination"
 import Pokelist from "../pokelist"
+import FixedBottomNavigation from '../bottombar';
 
 function Pokemon({favs, actionName, data, page, dispatch}) {
 
@@ -54,6 +55,7 @@ function Pokemon({favs, actionName, data, page, dispatch}) {
       <PaginationControlled actionName={actionName} count={pageCount} page={page} page_size ={20} data={data} dispatch={dispatch} />
       <Pokelist favs={favs} pageSize={pageSize} data={data} page={page} dispatch={dispatch}/>
       <PaginationControlled actionName={actionName} count={pageCount} page={page} page_size ={20} data={data} dispatch={dispatch} />
+      <FixedBottomNavigation />
       </>
         )
 }

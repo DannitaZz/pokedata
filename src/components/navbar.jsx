@@ -12,6 +12,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import logo from '../img/pokeball.png'
 import LogoutIcon from '@mui/icons-material/Logout';
+import BasicMenu from './filterbar';
+import SearchAppBar from './searchbar';
 import { useNavigate } from "react-router-dom";
 
 const pages = ['Pokémon', 'Favorites'];
@@ -58,7 +60,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static" style={{background: '#161B22'}}>
+    <AppBar position="static" style={{background: '#161B22'}} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
             <img src={logo} alt='logo' style={{maxWidth: 50}}/>
@@ -71,7 +73,7 @@ const ResponsiveAppBar = () => {
           >
                    
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} >
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} >
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -107,8 +109,8 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
-          
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+           */}
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', lg: 'flex' }}}>
             {pages.map((page, i) => (
               <Button
                 key={page}
@@ -120,8 +122,13 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0, display: 'flex'}}>
+            <BasicMenu/>
+          </Box>
+          <Box sx={{ flexGrow: 0, display: 'flex'}}>
+            <SearchAppBar />
+          </Box>
+          <Box sx={{ flexGrow: 0, display: { xs: 'none', lg: 'flex' } }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <LogoutIcon />

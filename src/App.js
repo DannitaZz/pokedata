@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Pokemon from './components/pages/pokemon';
 import Details from './components/pages/details';
 import Favorites from './components/pages/favorites';
+import FixedBottomNavigation from './components/bottombar';
+import SearchAppBar from './components/searchbar';
 
 
 function App() {
@@ -19,7 +21,7 @@ function App() {
           <Route exact path='/' element={<Pokemon favs={state.favIds} actionName={'setMainPage'} data={state.data} page={state.mainPage.page} dispatch={dispatch} />} />
           <Route exact path='/:id' element={<Details pokemon={state.pokemon} dispatch={dispatch} />} />
           <Route exact path='/favorites' element={<Pokemon favs={state.favIds} actionName={'setFavPage'} data={state.favs} page={state.favPage.page} dispatch={dispatch} />} />
-          {/* <Route exact path='/favorites' element={<Favorites state={state} dispatch={dispatch} />} /> */}
+          <Route exact path='/bottom' element={<SearchAppBar />} />
         </Routes>
       </BrowserRouter>
     </div>
