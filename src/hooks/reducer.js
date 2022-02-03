@@ -38,7 +38,7 @@ function arrayRemove(arr, value) {
     });
 }
 
-const pageSize = 20;
+// const pageSize = 20;
 export const reducer = (state, action) => {
     switch (action.type) {
         case 'getData':

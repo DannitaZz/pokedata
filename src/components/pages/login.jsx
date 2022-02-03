@@ -8,7 +8,6 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
-
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
@@ -26,25 +25,26 @@ function Copyright(props) {
   );
 }
 
-export default function SignIn({state, dispatch}) {
+export default function SignIn() {
+
   const navigateTo = useNavigate();
-  const handleSubmit = (event) => {
+  const handleSubmit = (event) => { 
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
     const user = {
       email: data.get('email'),
       password: data.get('password'),
     }
-    /* dispatch({type: 'signIn', value: user}) */
+    /* dispatch({type: 'signIn', value: user}) */ 
     localStorage.setItem('user', user.email)
     localStorage.setItem('pass', user.password)
+    
     navigateTo('/')
     
   };
 
   return (
-      <Container component="main" maxWidth="xs">
+      <Container className="fade-in" component="main" maxWidth="xs">
         
         <Box
           sx={{
@@ -78,30 +78,14 @@ export default function SignIn({state, dispatch}) {
               label="Password"
               id="password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, backgroundColor: '#161B22' }}
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />

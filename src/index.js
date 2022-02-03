@@ -5,18 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { checkValue } from './utils'
+import { checkValue, validUser, validPass} from './utils'
 
 const appName = 'pokedata'
-const version = '0.1'
-const realUser = 'ash_ketchum'
-const realPass = 'pikachu123'
+const version = '0.15'
 checkValue('appName', appName)
 checkValue('version', version)
 localStorage.setItem('appName', appName)
 localStorage.setItem('version', version)
-localStorage.setItem('realUser', 'ash_ketchum')
-localStorage.setItem('realPass', 'pikachu123')
 
 let theme = createTheme({
   palette: {

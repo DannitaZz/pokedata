@@ -25,8 +25,6 @@ const typeFilter = (type, data) => {
 
 function Pokemon({favs, actionName, data, page, filterState, dispatch}) {
 
-  // checkLogin(useNavigate)
-
   const pokeCount = 898
   const pageSize = 20;
   let filteredData =  data
