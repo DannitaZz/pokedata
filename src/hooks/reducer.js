@@ -1,7 +1,12 @@
+import {getLocalStorageObj} from '../utils'
+
+const [favs,] = getLocalStorageObj('favs',[])
+const [favIds,] = getLocalStorageObj('favIds',[])
+
 export const initialState = {
     data: [],
-    favs: [],
-    favIds: [],
+    favs: favs,
+    favIds: favIds,
     mainPage: {
         currentData:[],
         page: 1,
@@ -63,6 +68,8 @@ export const reducer = (state, action) => {
                     newFavs.push(element);
                 }
             });
+            localStorage.setItem('favs', JSON.stringify(newFavs));
+            localStorage.setItem('favIds', JSON.stringify(currentFavIds));
             return {...state, favs: newFavs, favIds: currentFavIds}
         case 'filterName':
             return {...state, filterState: {...state.filterState, name: action.value}}

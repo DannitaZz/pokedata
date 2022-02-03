@@ -4,6 +4,9 @@ import ResponsiveAppBar from "../navbar"
 import PaginationControlled from "../pagination"
 import Pokelist from "../pokelist"
 import FixedBottomNavigation from '../bottombar';
+import {getLocalStorageObj} from '../../utils'
+// import { useNavigate } from "react-router-dom"
+// import { checkLogin } from '../../utils';
 
 const nameFilter = (name, data) => (
   data.filter(item=>(
@@ -22,13 +25,15 @@ const typeFilter = (type, data) => {
 
 function Pokemon({favs, actionName, data, page, filterState, dispatch}) {
 
+  // checkLogin(useNavigate)
+
   const pokeCount = 898
   const pageSize = 20;
   let filteredData =  data
   
   filteredData = nameFilter(filterState.name, filteredData)
   filteredData = typeFilter(filterState.type, filteredData)
-  console.log(filteredData[34])
+  // console.log(filteredData[34])
 
   const pageCount = Math.round(filteredData.length / pageSize)
 
@@ -60,10 +65,17 @@ function Pokemon({favs, actionName, data, page, filterState, dispatch}) {
     useEffect(() => {
         async function getPokeData() {
             try {
-                const response = await axios({ method: "post", url: baseUrl, data: JSON.stringify(bodyRepo), headers: headers });
-                const fulldata = response.data.data.pokemon_v2_pokemon;
-                const data = fulldata.slice(0, pokeCount);
-                dispatch({ type: 'getData', data: data });
+                const [data, saved] = getLocalStorageObj('data', {})
+                if (saved){
+                  dispatch({ type: 'getData', data: data });
+                } else{
+                  const response = await axios({ method: "post", url: baseUrl, data: JSON.stringify(bodyRepo), headers: headers });
+                  const fulldata = response.data.data.pokemon_v2_pokemon;
+                  const data = fulldata.slice(0, pokeCount);
+                  dispatch({ type: 'getData', data: data });
+                  localStorage.setItem('data', JSON.stringify(data));
+                }
+
             } catch (error) {
                 console.error(error);
             }

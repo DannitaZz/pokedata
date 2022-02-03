@@ -55,9 +55,9 @@ function Pokedetails({ pokemon, dispatch }) {
                             })}
                             <hr></hr>
                             STATS: {pokemon && pokemon.stats.map((stat, i) => {
-                                return <>
-                                    <li key={'p' + i}>{stat.stat.name}: {stat.base_stat}</li>
-                                </>
+                                return <div key={'p' + i}>
+                                    <li >{stat.stat.name}: {stat.base_stat}</li>
+                                </div>
                             })}
 
 

@@ -17,7 +17,7 @@ export default function BasicMenu({ currentType, dispatch }) {
   };
 
   const handleActionClose = (e) => {
-    // console.log(e.target.getAttribute("value")) 
+    console.log(e.target.getAttribute("value")) 
     dispatch({ type: "filterType", value: e.target.getAttribute("value") })
     return handleClose(e)
   }
@@ -33,6 +33,7 @@ export default function BasicMenu({ currentType, dispatch }) {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        sx={{color: 'white'}}
       >
         <FilterListIcon />
       </Button>

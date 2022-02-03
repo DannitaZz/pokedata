@@ -9,7 +9,7 @@ export default function PaginationControlled({actionName, page, count, dispatch}
   };
 
   return (
-      <div style={{width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+      <div style={{width: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '1%', marginBottom: '1%'}}>
     <Stack spacing={2} sx={{alignSelf: 'center'}}>
       {/* <Typography>Page: {state && state.page}</Typography> */}
       {/* <Pagination count={Math.round(data.length / page_size)}  color="primary" page={page}  onChange={handleChange} /> */}

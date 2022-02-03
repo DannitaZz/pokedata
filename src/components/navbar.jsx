@@ -55,15 +55,23 @@ const ResponsiveAppBar = ({currentType, dispatch}) => {
 };
 
   const handleCloseUserMenu = () => {
-      navigateTo('/');
+    navigateTo('/');
     setAnchorElUser(null);
   };
+
+  const handleCloseUserMenuLogout = () => {
+    localStorage.removeItem('user')
+    localStorage.removeItem('pass')  
+    navigateTo('/login');
+    setAnchorElUser(null);
+  };
+
 
   return (
     <AppBar position="static" style={{background: '#161B22'}} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-            <img src={logo} alt='logo' style={{maxWidth: 50}}/>
+            <img src={logo} alt='logo' style={{maxWidth: 50}} onClick={() => navigateTo('/')}/>
             
             <Typography
             variant="h6"
@@ -73,43 +81,6 @@ const ResponsiveAppBar = ({currentType, dispatch}) => {
           >
                    
           </Typography>
-          {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} >
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={navigateToRepo}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page, i) => (
-                <MenuItem key={page} >
-                  <Typography textAlign="center" data-my-value={i} onClick={navigateToRepo_}>{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-           */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', lg: 'flex' }}}>
             {pages.map((page, i) => (
               <Button
@@ -130,7 +101,7 @@ const ResponsiveAppBar = ({currentType, dispatch}) => {
           </Box>
           <Box sx={{ flexGrow: 0, display: { xs: 'none', lg: 'flex' } }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: 'white', marginLeft: '10px' }}>
                 <LogoutIcon />
               </IconButton>
             </Tooltip>
@@ -151,7 +122,7 @@ const ResponsiveAppBar = ({currentType, dispatch}) => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={handleCloseUserMenuLogout}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

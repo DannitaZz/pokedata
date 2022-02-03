@@ -26,7 +26,6 @@ function Copyright(props) {
   );
 }
 
-
 export default function SignIn({state, dispatch}) {
   const navigateTo = useNavigate();
   const handleSubmit = (event) => {
@@ -38,6 +37,8 @@ export default function SignIn({state, dispatch}) {
       password: data.get('password'),
     }
     /* dispatch({type: 'signIn', value: user}) */
+    localStorage.setItem('user', user.email)
+    localStorage.setItem('pass', user.password)
     navigateTo('/')
     
   };
