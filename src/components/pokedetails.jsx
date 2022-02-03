@@ -4,14 +4,13 @@ import axios from 'axios';
 import { Chart } from "react-google-charts";
 import { Typography, Card, CardContent, CardMedia } from '@mui/material';
 
-
 function Pokedetails({ pokemon, dispatch }) {
     const { id } = useParams();
     function upperFirstLetter(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
     const data = [
-        ["Stat", "Max", {role: 'style'}],
+        ["Stat", "Pts", {role: 'style'}],
         ["HP", Number(pokemon.stats[0].base_stat), 'color: #D14461'],
         ["Attack", Number(pokemon.stats[1].base_stat), 'color: #176CC5'],
         ["Defense", Number(pokemon.stats[2].base_stat), 'color: #63BC5D'],
@@ -22,7 +21,6 @@ function Pokedetails({ pokemon, dispatch }) {
     const options = {
         title: "Stats",
         chartArea: { width: "50%" },
-        colors: ['#D14461', '#176CC5', '#63BC5D', '#F1D85A', '#B667CD', '#D87C52'],
         isStacked: true,
         hAxis: {
           title: "Pokémon Stats",
@@ -50,29 +48,31 @@ function Pokedetails({ pokemon, dispatch }) {
     return (
         <>
 
-            <div>
-                <Card sx={{ with: '80vw', height: '92vh', display: 'flex', justifyContent: 'center' }}>
-                    <CardContent sx={{ align: 'center' }}>
-                        <Typography component="div" variant="h4" textAlign='center'>
-                            Pokemon #{id} {upperFirstLetter(pokemon.name)}
-                        </Typography>
+            <div style={{display: 'flex', alignContent: 'center', justifyContent: 'center', marginTop: '3%'}}>
+                <Card sx={{ height: '80vh', display: 'flex', justifyContent: 'center', justifySelf: 'center', alignSelf: 'center'}}>
+                    <CardContent sx={{ align: 'center'}}>
                         <CardMedia
                             component="img"
                             sx={{ height: '40vh', align: 'center' }}
                             image={pokemon && pokemon.sprites.other["official-artwork"].front_default}
                             alt="pokemon"
                         />
+                         <Typography component="div" variant="h5" textAlign='center'>
+                              {upperFirstLetter(pokemon.name)}
+                             <br></br>
+                             #{id}
+                        </Typography>
                         <Typography component="div" variant="p" textAlign='center'>
-                            <hr></hr>
-                            Type: {pokemon && pokemon.types.map((type, i) => {
+                            
+                            {pokemon && pokemon.types.map((type, i) => {
                                 return (<li key={'t' + i}>{type.type.name}</li>)
                             })}
                         </Typography>
-                        <hr></hr>
+                        
                         <Chart
                             chartType="BarChart"
                             width="100%"
-                            height="200px"
+                            height="50%"
                             data={data}
                             options={options}
                         />
