@@ -19,7 +19,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path='/' element={!loggedIn ? <Navigate to="/login" /> : <Pokemon favs={state.favIds} actionName={'setMainPage'} data={state.data} page={state.mainPage.page} filterState={state.filterState} dispatch={dispatch} />} />
-          <Route exact path='/:id' element={!loggedIn ? <Navigate to="/login" /> : <Details pokemon={state.detailPage.pokemon} currentType={state.filterState.type} dispatch={dispatch} />} />
+          <Route exact path='/:id' element={!loggedIn ? <Navigate to="/login" /> : <Details searchValue={state.filterState.name} pokemon={state.detailPage.pokemon} currentType={state.filterState.type} dispatch={dispatch} />} />
           <Route exact path='/favorites' element={!loggedIn ? <Navigate to="/login" /> : <Pokemon favs={state.favIds} actionName={'setFavPage'} data={state.favs} page={state.favPage.page} filterState={state.filterState} dispatch={dispatch} />} />
           <Route exact path='/login' element={<SignIn />} />
         </Routes>

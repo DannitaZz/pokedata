@@ -46,7 +46,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar({dispatch}) {
+export default function SearchAppBar({searchValue, dispatch}) {
+  console.log('search Value is', searchValue)
   return (
     <Box sx={{ flexGrow: 1 }}>
           <Search>
@@ -56,6 +57,7 @@ export default function SearchAppBar({dispatch}) {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              value={searchValue}
               onChange={(e) => dispatch({type: 'filterName', value: e.target.value })}
             />
           </Search>

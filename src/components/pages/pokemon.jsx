@@ -86,7 +86,7 @@ function Pokemon({favs, actionName, data, page, filterState, dispatch}) {
         , [])
     return (
         <>
-        <ResponsiveAppBar currentType = {filterState.type} dispatch={dispatch}/>
+        <ResponsiveAppBar searchValue={filterState.name} currentType = {filterState.type} dispatch={dispatch}/>
       <PaginationControlled actionName={actionName} count={pageCount} page={page} page_size ={20} data={filteredData} dispatch={dispatch} />
       <Pokelist favs={favs} pageSize={pageSize} data={filteredData} page={page} dispatch={dispatch}/>
       <PaginationControlled actionName={actionName} count={pageCount} page={page} page_size ={20} data={filteredData} dispatch={dispatch} />

@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect } from "react";
 import axios from 'axios';
+import { Chart } from "react-google-charts";
 import { Typography, Card, CardContent, CardMedia } from '@mui/material';
 
 
@@ -9,14 +10,27 @@ function Pokedetails({ pokemon, dispatch }) {
     function upperFirstLetter(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
-    const checkState = (state) => {
-        try {
-            return state.name
-        }
-        catch {
-            return 'loading'
-        }
-    }
+    const data = [
+        ["Stat", "Max", {role: 'style'}],
+        ["HP", Number(pokemon.stats[0].base_stat), 'color: #D14461'],
+        ["Attack", Number(pokemon.stats[1].base_stat), 'color: #176CC5'],
+        ["Defense", Number(pokemon.stats[2].base_stat), 'color: #63BC5D'],
+        ["Special Attack", Number(pokemon.stats[3].base_stat), 'color: #F1D85A'],
+        ["Special Defense", Number(pokemon.stats[4].base_stat), 'color: #B667CD'],
+        ["Speed", Number(pokemon.stats[5].base_stat), 'color: #D87C52'],
+    ];
+    const options = {
+        title: "Stats",
+        chartArea: { width: "50%" },
+        colors: ['#D14461', '#176CC5', '#63BC5D', '#F1D85A', '#B667CD', '#D87C52'],
+        isStacked: true,
+        hAxis: {
+          title: "Pokémon Stats",
+          minValue: 0,
+          maxValue: 100,
+        },
+      };
+
     useEffect(() => {
         async function getPokeData() {
             try {
@@ -50,19 +64,18 @@ function Pokedetails({ pokemon, dispatch }) {
                         />
                         <Typography component="div" variant="p" textAlign='center'>
                             <hr></hr>
-                            Type: {pokemon && pokemon.types.map((type, i)=> {
+                            Type: {pokemon && pokemon.types.map((type, i) => {
                                 return (<li key={'t' + i}>{type.type.name}</li>)
                             })}
-                            <hr></hr>
-                            STATS: {pokemon && pokemon.stats.map((stat, i) => {
-                                return <div key={'p' + i}>
-                                    <li >{stat.stat.name}: {stat.base_stat}</li>
-                                </div>
-                            })}
-
-
-
                         </Typography>
+                        <hr></hr>
+                        <Chart
+                            chartType="BarChart"
+                            width="100%"
+                            height="200px"
+                            data={data}
+                            options={options}
+                        />
                     </CardContent>
                 </Card>
             </div>

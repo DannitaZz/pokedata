@@ -27,12 +27,6 @@ let theme = createTheme({
     secondary: {
       main: '#f50057',
     },
-    /* text: {
-      primary: 'rgba(243,239,239,0.87)',
-      secondary: 'rgba(212,210,210,0.54)',
-      disabled: 'rgba(131,131,131,0.38)',
-      hint: 'rgba(127,127,127,0.38)',
-    }, */
   },
 }
 );

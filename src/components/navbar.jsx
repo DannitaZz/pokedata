@@ -14,16 +14,17 @@ import logo from '../img/pokeball.png'
 import LogoutIcon from '@mui/icons-material/Logout';
 import BasicMenu from './filterbar';
 import SearchAppBar from './searchbar';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const pages = ['Pokémon', 'Favorites'];
 const settings = ['Logout'];
 
-const ResponsiveAppBar = ({currentType, dispatch}) => {
+const ResponsiveAppBar = ({ searchValue, currentType, dispatch }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const navigateTo = useNavigate();
+  let location = useLocation();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -34,25 +35,25 @@ const ResponsiveAppBar = ({currentType, dispatch}) => {
 
   const navigateToRepo = (e) => {
 
-      if (e.target.value === '0'){
-            navigateTo('/');
-      }
-      else if (e.target.value === '1') {
-            navigateTo('/favorites');
-      }
+    if (e.target.value === '0') {
+      navigateTo('/');
+    }
+    else if (e.target.value === '1') {
+      navigateTo('/favorites');
+    }
     setAnchorElNav(null);
   };
 
   const navigateToRepo_ = (e) => {
-    const { value } =  e.target.innerText;
-    if (e.target.innerText === 'Pokémon'){
-          navigateTo('/');
+    const { value } = e.target.innerText;
+    if (e.target.innerText === 'Pokémon') {
+      navigateTo('/');
     }
-    else if (e.target.innerText=== 'Favorites') {
-          navigateTo('/favorites');
+    else if (e.target.innerText === 'Favorites') {
+      navigateTo('/favorites');
     }
-  setAnchorElNav(null);
-};
+    setAnchorElNav(null);
+  };
 
   const handleCloseUserMenu = () => {
     navigateTo('/');
@@ -61,27 +62,27 @@ const ResponsiveAppBar = ({currentType, dispatch}) => {
 
   const handleCloseUserMenuLogout = () => {
     localStorage.removeItem('user')
-    localStorage.removeItem('pass')  
+    localStorage.removeItem('pass')
     navigateTo('/login');
     setAnchorElUser(null);
   };
 
 
   return (
-    <AppBar position="static" style={{background: '#161B22'}} >
+    <AppBar position="static" style={{ background: '#161B22' }} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-            <img src={logo} alt='logo' style={{maxWidth: 50}} onClick={() => navigateTo('/')}/>
-            
-            <Typography
+          <img src={logo} alt='logo' style={{ maxWidth: 50 }} onClick={() => navigateTo('/')} />
+
+          <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-                   
+
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', lg: 'flex' }}}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', lg: 'flex' } }}>
             {pages.map((page, i) => (
               <Button
                 key={page}
@@ -93,12 +94,26 @@ const ResponsiveAppBar = ({currentType, dispatch}) => {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0, display: 'flex'}}>
+          {(() => {
+            if (location.pathname === '/' || location.pathname === '/favorites') {
+              return (
+                <>
+                  <Box sx={{ flexGrow: 0, display: 'flex' }}>
+                    <BasicMenu currentType={currentType} dispatch={dispatch} />
+                  </Box>
+                  <Box sx={{ flexGrow: 0, display: 'flex' }}>
+                    <SearchAppBar searchValue={searchValue} dispatch={dispatch} />
+                  </Box>
+                </>
+              )
+            }
+          })()}
+          {/* <Box sx={{ flexGrow: 0, display: 'flex' }}>
             <BasicMenu currentType={currentType} dispatch={dispatch} />
           </Box>
-          <Box sx={{ flexGrow: 0, display: 'flex'}}>
-            <SearchAppBar dispatch={dispatch}/>
-          </Box>
+          <Box sx={{ flexGrow: 0, display: 'flex' }}>
+            <SearchAppBar searchValue={searchValue} dispatch={dispatch} />
+          </Box> */}
           <Box sx={{ flexGrow: 0, display: { xs: 'none', lg: 'flex' } }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: 'white', marginLeft: '10px' }}>
