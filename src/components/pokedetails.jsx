@@ -6,7 +6,6 @@ import { Typography, Card, CardContent, CardMedia } from '@mui/material';
 
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box'
 import { ReactComponent as Bug } from '../img/bug.svg'
 import { ReactComponent as Dark } from '../img/dark.svg'
 import { ReactComponent as Dragon } from '../img/dragon.svg'
@@ -79,9 +78,9 @@ function Pokedetails({ pokemon, dispatch }) {
     let typeOneColor
     let typeTwoColor
     const highestStat = Math.max(...pokemon.stats.map((item) => item.base_stat))
-    console.log(highestStat)
+    // console.log(highestStat)
 
-    if (pokemon.types.length == 2) {
+    if (pokemon.types.length === 2) {
         typeOneColor = typeColors[String(pokemon.types[0].type.name)]
         typeTwoColor = typeColors[String(pokemon.types[1].type.name)]
     } else {
@@ -147,7 +146,7 @@ function Pokedetails({ pokemon, dispatch }) {
         getPokeData();
 
     }
-        , [])
+        , [id, dispatch])
 
     return (
         <>
