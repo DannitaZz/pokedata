@@ -4,6 +4,9 @@
 
 Proyecto realizado con React, Material-U y Google Chart consumiendo datos desde [PokéAPI](https://pokeapi.co/) y desplegado en [Pokedata](https://pokedata-react.herokuapp.com/)
 
+## POkedata en acción 
+
+![](pokedata.gif)
 
 ## Cómo usar
 
