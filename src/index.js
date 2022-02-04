@@ -8,7 +8,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { checkValue } from './utils'
 
 const appName = 'pokedata'
-const version = '0.15'
+const version = '0.16'
 
 checkValue('appName', appName)
 checkValue('version', version)

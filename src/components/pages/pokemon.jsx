@@ -19,7 +19,22 @@ const typeFilter = (type, data) => {
   if(type === 'all'){
     return data
   }else{
-    return data.filter(item=>(item.pokemon_v2_pokemontypes[0].pokemon_v2_type.name === type))
+    return data.filter(item=>{
+      let type_1
+      let type_2
+      if (item.pokemon_v2_pokemontypes.length === 2) {
+        type_1 = item.pokemon_v2_pokemontypes[0].pokemon_v2_type.name
+        type_2 = item.pokemon_v2_pokemontypes[1].pokemon_v2_type.name
+      }else{
+        type_1 = item.pokemon_v2_pokemontypes[0].pokemon_v2_type.name
+        type_2 = item.pokemon_v2_pokemontypes[0].pokemon_v2_type.name
+      }
+      if(type_1 === type || type_2 === type){
+        return true
+      }else{
+        return false
+      }
+    })
   }
 };
 

@@ -74,7 +74,7 @@ export const reducer = (state, action) => {
             localStorage.setItem('favIds', JSON.stringify(currentFavIds));
             return {...state, favs: newFavs, favIds: currentFavIds}
         case 'filterName':
-            return {...state, filterState: {...state.filterState, name: action.value}}
+            return {...state, filterState: {...state.filterState, name: action.value}, mainPage: {...state.mainPage, page: 1}, favPage: {...state.favPage, page: 1}}
         case 'filterType':
             let newType = action.value
             // console.log(newType)
@@ -85,7 +85,7 @@ export const reducer = (state, action) => {
             } else {
                 newType = 'all'
             }
-            return {...state, filterState: {...state.filterState, type: newType}}
+            return {...state, filterState: {...state.filterState, type: newType}, mainPage: {...state.mainPage, page: 1}, favPage: {...state.favPage, page: 1}}
         case 'login':
             //console.log('login got to the reducer')
             localStorage.setItem('login', 'true')
