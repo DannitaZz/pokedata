@@ -5,6 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
@@ -60,15 +61,14 @@ const ResponsiveAppBar = ({ searchValue, currentType, dispatch }) => {
   };
 
   const handleCloseUserMenuLogout = () => {
-    localStorage.removeItem('user')
-    localStorage.removeItem('pass')
+    dispatch({type:'logout'})
     navigateTo('/login');
     setAnchorElUser(null);
   };
 
 
   return (
-    <AppBar position="static" style={{ background: '#161B22' }} >
+    <AppBar position="sticky" style={{ background: '#161B22' }} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <img src={logo} alt='logo' style={{ maxWidth: 50 }} onClick={() => navigateTo('/')} />
@@ -107,6 +107,12 @@ const ResponsiveAppBar = ({ searchValue, currentType, dispatch }) => {
               )
             }
           })()}
+          {/* <Box sx={{ flexGrow: 0, display: 'flex' }}>
+            <BasicMenu currentType={currentType} dispatch={dispatch} />
+          </Box>
+          <Box sx={{ flexGrow: 0, display: 'flex' }}>
+            <SearchAppBar searchValue={searchValue} dispatch={dispatch} />
+          </Box> */}
           <Box sx={{ flexGrow: 0, display: { xs: 'none', lg: 'flex' } }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: 'white', marginLeft: '10px' }}>

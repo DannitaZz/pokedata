@@ -5,10 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { checkValue, validUser, validPass} from './utils'
+import { checkValue } from './utils'
 
 const appName = 'pokedata'
 const version = '0.15'
+
 checkValue('appName', appName)
 checkValue('version', version)
 localStorage.setItem('appName', appName)

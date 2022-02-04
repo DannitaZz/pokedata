@@ -47,7 +47,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar({searchValue, dispatch}) {
-  console.log('search Value is', searchValue)
+  //console.log('search Value is', searchValue)
   return (
     <Box sx={{ flexGrow: 1 }}>
           <Search>

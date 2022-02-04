@@ -17,7 +17,7 @@ export default function BasicMenu({ currentType, dispatch }) {
   };
 
   const handleActionClose = (e) => {
-    console.log(e.target.getAttribute("value")) 
+    //(e.target.getAttribute("value")) 
     dispatch({ type: "filterType", value: e.target.getAttribute("value") })
     return handleClose(e)
   }

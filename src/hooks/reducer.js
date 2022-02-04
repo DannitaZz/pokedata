@@ -2,11 +2,13 @@ import {getLocalStorageObj} from '../utils'
 
 const [favs,] = getLocalStorageObj('favs',[])
 const [favIds,] = getLocalStorageObj('favIds',[])
+const login = localStorage.getItem('login')
 
 export const initialState = {
     data: [],
     favs: favs,
     favIds: favIds,
+    login: login,
     mainPage: {
         currentData:[],
         page: 1,
@@ -50,7 +52,7 @@ export const reducer = (state, action) => {
             return {...state, favPage: {...state.favPage, page: action.page}} 
         case 'getPokemon':
             const pokemon = action.pokemon;
-            console.log('El pokemon es: ',  pokemon.name)
+            //console.log('El pokemon es: ',  pokemon.name)
             return {...state, detailPage: {pokemon: pokemon}}    
         case 'setFav':
             const id = action.value;
@@ -79,11 +81,19 @@ export const reducer = (state, action) => {
             if (newType === state.filterState.type){
                 newType = 'all'
             } else if(types_list.includes(newType)){
-                console.log(newType)
+                //console.log(newType)
             } else {
                 newType = 'all'
             }
             return {...state, filterState: {...state.filterState, type: newType}}
+        case 'login':
+            //console.log('login got to the reducer')
+            localStorage.setItem('login', 'true')
+            return {...state, login:'true'}
+        case 'logout':
+                //console.log('logout got to the reducer')
+                localStorage.removeItem('login')
+                return {...state, login:false}
             // case 'gen':
         //     return {...state, filterState: {gen: action.value}}              
             // const generation = action.generation;

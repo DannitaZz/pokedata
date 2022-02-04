@@ -9,7 +9,7 @@ import StarIcon from '@mui/icons-material/Star';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-export default function FixedBottomNavigation() {
+export default function FixedBottomNavigation({dispatch}) {
     const navigateTo = useNavigate();
     let location = useLocation();
     /* console.log('Location', location) */
@@ -25,11 +25,8 @@ export default function FixedBottomNavigation() {
               } else if (newValue === '1') {
                   navigateTo('/favorites');
               } else if (newValue === '2') {
-                  localStorage.removeItem('user')
-                  localStorage.removeItem('pass')  
-                  navigateTo('/login')
-                  // console.log(newValue);
-                  
+                dispatch({type:'logout'})
+                navigateTo('/login')
               }
           }}
         >

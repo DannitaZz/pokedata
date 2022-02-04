@@ -10,7 +10,7 @@ function Details({searchValue, currentType, pokemon, dispatch}) {
         <>
         <ResponsiveAppBar searchValue={searchValue} currentType={currentType} dispatch={dispatch}/>
       <Pokedetails pokemon={pokemon} dispatch={dispatch}/>
-      <FixedBottomNavigation />
+      <FixedBottomNavigation dispatch={dispatch}/>
       </>
         )
 }
