@@ -12,16 +12,19 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import logo from '../img/pokeball.png'
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useNavigate } from "react-router-dom";
+import BasicMenu from './filterbar';
+import SearchAppBar from './searchbar';
+import { useNavigate, useLocation } from "react-router-dom";
 
 const pages = ['Pokémon', 'Favorites'];
 const settings = ['Logout'];
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = ({ searchValue, currentType, dispatch }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const navigateTo = useNavigate();
+  let location = useLocation();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -32,83 +35,53 @@ const ResponsiveAppBar = () => {
 
   const navigateToRepo = (e) => {
 
-      if (e.target.value === '0'){
-            navigateTo('/');
-      }
-      else if (e.target.value === '1') {
-            navigateTo('/favorites');
-      }
+    if (e.target.value === '0') {
+      navigateTo('/');
+    }
+    else if (e.target.value === '1') {
+      navigateTo('/favorites');
+    }
     setAnchorElNav(null);
   };
 
   const navigateToRepo_ = (e) => {
-    const { value } =  e.target.innerText;
-    if (e.target.innerText === 'Repositories'){
-          navigateTo('/pokemon');
+    const { value } = e.target.innerText;
+    if (e.target.innerText === 'Pokémon') {
+      navigateTo('/');
     }
-    else if (e.target.innerText=== 'Favorites') {
-          navigateTo('/favorites');
+    else if (e.target.innerText === 'Favorites') {
+      navigateTo('/favorites');
     }
-  setAnchorElNav(null);
-};
+    setAnchorElNav(null);
+  };
 
   const handleCloseUserMenu = () => {
-      navigateTo('/');
+    navigateTo('/');
     setAnchorElUser(null);
   };
 
+  const handleCloseUserMenuLogout = () => {
+    dispatch({type:'logout'})
+    navigateTo('/login');
+    setAnchorElUser(null);
+  };
+
+
   return (
-    <AppBar position="static" style={{background: '#161B22'}}>
+    <AppBar position="sticky" style={{ background: '#161B22' }} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-            <img src={logo} alt='logo' style={{maxWidth: 50}}/>
-            
-            <Typography
+          <img src={logo} alt='logo' style={{ maxWidth: 50 }} onClick={() => navigateTo('/')} />
+
+          <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
-                   
+
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} >
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={navigateToRepo}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page, i) => (
-                <MenuItem key={page} >
-                  <Typography textAlign="center" data-my-value={i} onClick={navigateToRepo_}>{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', lg: 'flex' } }}>
             {pages.map((page, i) => (
               <Button
                 key={page}
@@ -120,10 +93,29 @@ const ResponsiveAppBar = () => {
               </Button>
             ))}
           </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
+          {(() => {
+            if (location.pathname === '/' || location.pathname === '/favorites') {
+              return (
+                <>
+                  <Box sx={{ flexGrow: 0, display: 'flex' }}>
+                    <BasicMenu currentType={currentType} dispatch={dispatch} />
+                  </Box>
+                  <Box sx={{ flexGrow: 0, display: 'flex' }}>
+                    <SearchAppBar searchValue={searchValue} dispatch={dispatch} />
+                  </Box>
+                </>
+              )
+            }
+          })()}
+          {/* <Box sx={{ flexGrow: 0, display: 'flex' }}>
+            <BasicMenu currentType={currentType} dispatch={dispatch} />
+          </Box>
+          <Box sx={{ flexGrow: 0, display: 'flex' }}>
+            <SearchAppBar searchValue={searchValue} dispatch={dispatch} />
+          </Box> */}
+          <Box sx={{ flexGrow: 0, display: { xs: 'none', lg: 'flex' } }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: 'white', marginLeft: '10px' }}>
                 <LogoutIcon />
               </IconButton>
             </Tooltip>
@@ -144,7 +136,7 @@ const ResponsiveAppBar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={handleCloseUserMenuLogout}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}

@@ -1,83 +1,220 @@
-import React, { useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import { CardActionArea } from '@mui/material';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import StarBorderSharpIcon from '@mui/icons-material/StarBorderSharp';
+import StarIcon from '@mui/icons-material/Star';
+import { Stack } from '@mui/material';
+import ListItem from '@mui/material/ListItem';
+import ManageSearchIcon from '@mui/icons-material/ManageSearch';
+import Chip from '@mui/material/Chip';
+import { useNavigate } from "react-router-dom";
 
-function Pokelist({ state, dispatch }) {
+import { ReactComponent as Bug } from '../img/bug.svg'
+import { ReactComponent as Dark } from '../img/dark.svg'
+import { ReactComponent as Dragon } from '../img/dragon.svg'
+import { ReactComponent as Electric } from '../img/electric.svg'
+import { ReactComponent as Fairy } from '../img/fairy.svg'
+import { ReactComponent as Fighting } from '../img/fighting.svg'
+import { ReactComponent as Fire } from '../img/fire.svg'
+import { ReactComponent as Flying } from '../img/flying.svg'
+import { ReactComponent as Ghost } from '../img/ghost.svg'
+import { ReactComponent as Grass } from '../img/grass.svg'
+import { ReactComponent as Ground } from '../img/ground.svg'
+import { ReactComponent as Ice } from '../img/ice.svg'
+import { ReactComponent as Normal } from '../img/normal.svg'
+import { ReactComponent as Poison } from '../img/poison.svg'
+import { ReactComponent as Psychic } from '../img/psychic.svg'
+import { ReactComponent as Rock } from '../img/rock.svg'
+import { ReactComponent as Steel } from '../img/steel.svg'
+import { ReactComponent as Water } from '../img/water.svg'
+
+const typeComponents = {
+    'loading': Grass,
+    'undefined': Grass,
+    'null': Grass,
+    'bug': Bug,
+    'dark': Dark,
+    'dragon': Dragon,
+    'electric': Electric,
+    'fairy': Fairy,
+    'fighting': Fighting,
+    'fire': Fire,
+    'flying': Flying,
+    'ghost': Ghost,
+    'grass': Grass,
+    'ground': Ground,
+    'ice': Ice,
+    'normal': Normal,
+    'poison': Poison,
+    'psychic': Psychic,
+    'rock': Rock,
+    'steel': Steel,
+    'water': Water
+}
+
+const typeColors = {
+    'loading': 'white',
+    'undefined': 'white',
+    'null': 'white',
+    'bug': '#6c7d45',
+    'dark': '#595761',
+    'dragon': '#176cc5',
+    'electric': '#f1d85a',
+    'fairy': '#ed93e4',
+    'fighting': '#d14461',
+    'fire': '#f9a555',
+    'flying': '#a2bcea',
+    'ghost': '#606fba',
+    'grass': '#63bc5d',
+    'ground': '#d87c52',
+    'ice': '#79d0c1',
+    'normal': '#a0a29f',
+    'poison': '#b667cd',
+    'psychic': '#f88684',
+    'rock': '#d87c52',
+    'steel': '#5995a2',
+    'water': '#579edd'
+}
 
 
+function Pokelist({ favs, data, page, pageSize, dispatch }) {
+
+    const navigateTo = useNavigate();
+    const pageData = data.slice((page - 1) * pageSize, page * pageSize)
 
     function upperFirstLetter(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
-    const bodyRepo = {
-        "query": `
-    query samplePokeAPIquery {
-        pokemon_v2_pokemon {
-          id
-          name
-          pokemon_v2_pokemontypes {
-            pokemon_v2_type {
-              name
-            }
-          }
-          
-        }
-        
-      }
-    `
+    function handleClick(e) {
+        const id = e.currentTarget.value
+        //console.log('id', id)
+        navigateTo(`/${id}`);
     }
-
-    const baseUrl = "https://beta.pokeapi.co/graphql/v1beta";
-    const headers = {
-        "Content-Type": "application/json"
-    }
-
-    useEffect(() => {
-        async function getPokeData() {
-            try {
-                const response = await axios({ method: "post", url: baseUrl, data: JSON.stringify(bodyRepo), headers: headers });
-                const fulldata = response.data.data.pokemon_v2_pokemon;
-                const data = fulldata.slice(0, 898);
-
-                dispatch({ type: 'getData', data: data });
-                console.log('data: ', data)
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        getPokeData();
-
-    }
-        , [])
     return (
-        <div style={{ width: '100vw', display: 'flex', flexDirection: 'row', flexFlow: 'row wrap', justifyContent: 'center' }}>
-            {state && state.currentData.map((pokemon, i) => {
+        <div className='fade-in' style={{ width: '100vw', display: 'flex', flexDirection: 'row', flexFlow: 'row wrap', justifyContent: 'center' }}>
+            {pageData && pageData.map((pokemon, i) => {
                 return (
-                    <Card key={i} sx={{ maxWidth: 600, margin: '5px' }}>
-                        <CardMedia
-                            component="img"
-                            height="280"
-                            image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-                            alt="pokemon"
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                {upperFirstLetter(pokemon.name)}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                {upperFirstLetter(pokemon.pokemon_v2_pokemontypes[0].pokemon_v2_type.name)}
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button size="small">Fav</Button>
-                            <Button size="small">Detalles</Button>
-                        </CardActions>
-                    </Card>
+                    <div key={`div_${pokemon.id}`}>
+                        <Card key={`p_${pokemon.id}`} sx={{ display: { xs: 'none', sm: 'block' }, maxWidth: 600, margin: '5px' }}>
+                            <CardMedia
+                                component="img"
+                                height="280"
+                                image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+                                alt="pokemon"
+                                sx={{objectFit: 'contain'}}
+                            />
+                            <CardContent>
+                                <Stack sx={{ display: 'flex', 
+                                             flexDirection: 'row', 
+                                             justifyContent: 'space-between', 
+                                             margin: '0px',
+                                             padding: '0px',
+                                             border: '0px'}}>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                        {upperFirstLetter(pokemon.name)}
+                                    </Typography>
+                                    <Typography gutterBottom variant="h5" component="div" sx={{color:'gray'}}>
+                                        #{pokemon.id}
+                                    </Typography>
+                                </Stack>
+                                <Typography variant="body2" color="text.secondary" component="div">
+                                    {pokemon.pokemon_v2_pokemontypes.map((type_, i) => {
+                                        const type_name = String(type_.pokemon_v2_type.name)
+                                        // console.log('TYPE IS', type_name)
+                                        const TypeComponent = typeComponents[type_name];
+                                        return (<Chip sx={{ backgroundColor: typeColors[type_name], color: 'white', marginLeft: '10px', marginRight: '10px' }}
+                                            icon={<TypeComponent style={{ width: '15px', color: 'white' }} />}
+                                            label={type_name}
+                                            key={"type" + i}
+                                        />)
+                                    }
+                                    )
+                                    }
+                                </Typography>
+                            </CardContent>
+                            <CardActions sx={{ color: '#FEC11E', 
+                                               display: 'flex', 
+                                               flexDirection: 'row', 
+                                               justifyContent:'space-between',
+                                               margin: '10px',
+                                               padding: '0px',
+                                               border: '0px',
+                                               marginTop:'-5px'}}>
+                            {(() => {
+                                    if (favs.includes(pokemon.id)) {
+                                        return <StarIcon onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
+                                    } else {
+                                        return <StarBorderSharpIcon onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
+                                    }
+                                })()}
+                                <Button sx={{ color: 'black' }} size="small" value={pokemon.id} onClick={(e) => handleClick(e)}> <ManageSearchIcon /> Details</Button>
+                            </CardActions>
+                           
+                        </Card>
+                        <ListItem key={`pokemon_${pokemon.id}`} alignItems="center" sx={{ width: '100%', bgcolor: 'background.paper', height:'17.5vh', display: { xs: 'flex', sm: 'none' } }} >
+                            <Card sx={{ display: 'flex', width: '93vw', height: '15vh' }} key={pokemon.id}>
+                                <CardContent sx={{ flex: '1 1 auto', flexDirection: 'row' }}>
+                                <Stack sx={{ display: 'flex', 
+                                             flexDirection: 'row', 
+                                             justifyContent: 'space-between', 
+                                             margin: '0px',
+                                             padding: '0px',
+                                             border: '0px',
+                                             marginLeft: '10px',
+                                             marginRight: '20px'}}>
+                                    <Typography gutterBottom variant="h5" component="div" sx={{color:'gray'}}>
+                                        #{pokemon.id}
+                                    </Typography>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                        {upperFirstLetter(pokemon.name)}
+                                    </Typography>
+                                </Stack>
+                                    <Typography variant="subtitle1" color="text.secondary" component="div" sx={{ marginLeft: '0%', marginTop:'0%' }}>
+                                        {pokemon.pokemon_v2_pokemontypes.map((type_, i) => {
+                                            const type_name = String(type_.pokemon_v2_type.name)
+                                            //console.log('TYPE IS', type_name)
+                                            const TypeComponent = typeComponents[type_name];
+                                            return (<Chip sx={{ backgroundColor: typeColors[type_name], color: 'white', marginLeft: '10px', marginRight: '10px' }}
+                                                icon={<TypeComponent style={{ width: '15px', color: 'white' }} />}
+                                                label={type_name}
+                                                key={"type" + i}
+                                            />)
+                                        }
+                                        )
+                                        }
+                                    </Typography>
+                                    <CardActions sx={{ color: '#FEC11E', 
+                                                       display: 'flex', 
+                                                       flexDirection: 'row', 
+                                                       justifyContent:'flex-start',
+                                                       margin: '10px',
+                                                       padding: '0px',
+                                                       border: '0px',
+                                                       marginTop:'0px'}}>
+                                        {(() => {
+                                            if (favs.includes(pokemon.id)) {
+                                                return <StarIcon onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
+                                            } else {
+                                                return <StarBorderSharpIcon onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
+                                            }
+                                        })()}
+                                        <Button sx={{ color: 'black', marginLeft: '15px'}} value={pokemon.id} onClick={(e) => handleClick(e)}><ManageSearchIcon/> Details</Button>
+                                    </CardActions>
+                                </CardContent>
+                                <CardMedia
+                                    component="img"
+                                    sx={{ width: '30vw', objectFit: 'contain'}}
+                                    image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+                                    alt="pokemon"
+                                />
+                            </Card>
+                        </ListItem>
+                    </div>
                 )
             })}
         </div>
