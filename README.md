@@ -40,28 +40,16 @@ Las credenciales de acceso del usuario dummy son:
 ### Mobile
 
 - Vista principal
-![](https://i.imgur.com/Llyfq00.jpg)
-- Vista de favoritos
-![](https://i.imgur.com/ZjzRJCY.jpg)
+![](https://i.imgur.com/y22tBAY.png)
 - Vista detalles
-![](https://i.imgur.com/u5du2Fv.png)
-- Filtros
-![](https://i.imgur.com/0WYrI0P.jpg)
-- Busqueda 
-![](https://i.imgur.com/Dswji41.jpg)
+![](https://i.imgur.com/PYsUWo2.png)
 
 ### Desktop
 
 - Vista principal
-![](https://i.imgur.com/vdmUEvp.png)
-- Vista de favoritos
-![](https://i.imgur.com/bqMVe7O.png)
+![](https://i.imgur.com/uy9rDy5.jpg)
 - Vista detalles
-![](https://i.imgur.com/iNjLuQ2.png)
-- Filtros
-![](https://i.imgur.com/fa7f1pe.png)
-- Busqueda
-![](https://i.imgur.com/v246OmG.png)
+![](https://i.imgur.com/MlXgslS.png)
 
 
 ## Prospectos
