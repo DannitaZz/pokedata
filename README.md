@@ -12,6 +12,10 @@ Las credenciales de acceso del usuario dummy son:
 - user: ash_ketchum
 - password: pikachu123
 
+## Pokedata en acción
+
+![](https://i.imgur.com/6QgV463.gif)
+
 ## Características
 
 1. Responsive.
