@@ -152,7 +152,7 @@ function Pokedetails({ pokemon, dispatch }) {
         <>
 
             <div className='fade-in' style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', marginTop: '3%' }}>
-                <Card sx={{ height: '80vh', display: 'flex', justifyContent: 'center', justifySelf: 'center', alignSelf: 'center', width: '70%' }}>
+                <Card sx={{ height: '80vh', display: 'flex', justifyContent: 'center', justifySelf: 'center', alignSelf: 'center', width: '90%' }}>
                     <CardContent sx={{ margin: '0px', padding: '0px', border: '0px', width: '100%' }}>
                         <CardMedia
                             className='poke-background'

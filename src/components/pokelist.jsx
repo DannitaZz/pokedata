@@ -112,7 +112,7 @@ function Pokelist({ favs, data, page, pageSize, dispatch }) {
 
                 return (
                     <div key={`div_${pokemon.id}`}>
-                        <Card key={`${pokemon.id}`} sx={{ display: { xs: 'none', sm: 'block', height: '350px'}, maxWidth: 600, margin: '5px' }}>
+                        <Card key={`${pokemon.id}`} sx={{ display: { xs: 'none', sm: 'block', height: '350px' }, maxWidth: 600, margin: '5px' }}>
                             <CardMedia
                                 component="img"
                                 height="280px"
@@ -130,12 +130,12 @@ function Pokelist({ favs, data, page, pageSize, dispatch }) {
                                 }}
                             />
                             <CardContent>
-                            <Typography variant="body2" color="text.secondary" component="div">
+                                <Typography variant="body2" color="text.secondary" component="div">
                                     {pokemon.pokemon_v2_pokemontypes.map((type_, i) => {
                                         const type_name = String(type_.pokemon_v2_type.name)
                                         // console.log('TYPE IS', type_name)
                                         const TypeComponent = typeComponents[type_name];
-                                        return (<Chip sx={{ backgroundColor: typeColors[type_name], color: 'white', marginLeft: '10px', marginRight: '10px', marginTop:'0px', marginBottom:'15px'}}
+                                        return (<Chip sx={{ backgroundColor: typeColors[type_name], color: 'white', marginLeft: '10px', marginRight: '10px', marginTop: '0px', marginBottom: '15px' }}
                                             icon={<TypeComponent style={{ width: '15px', color: 'white' }} />}
                                             label={type_name}
                                             key={"type" + i}
@@ -144,97 +144,85 @@ function Pokelist({ favs, data, page, pageSize, dispatch }) {
                                     )
                                     }
                                 </Typography>
-                                <Stack sx={{ display: 'flex', 
-                                             flexDirection: 'row', 
-                                             justifyContent: 'space-between', 
-                                             margin: '0px',
-                                             padding: '0px',
-                                             border: '0px'}}>
+                                <Stack sx={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-between',
+                                    margin: '0px',
+                                    padding: '0px',
+                                    border: '0px'
+                                }}>
                                     <Typography gutterBottom variant="h5" component="div">
                                         {upperFirstLetter(pokemon.name)}
                                         {(() => {
-                                    if (favs.includes(pokemon.id)) {
-                                        return <StarIcon sx={{marginBottom:'-5px'}} onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
-                                    } else {
-                                        return <StarBorderSharpIcon sx={{marginBottom:'-5px'}} onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
-                                    }
-                                })()}
+                                            if (favs.includes(pokemon.id)) {
+                                                return <StarIcon sx={{ marginBottom: '-5px' }} onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
+                                            } else {
+                                                return <StarBorderSharpIcon sx={{ marginBottom: '-5px' }} onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
+                                            }
+                                        })()}
                                     </Typography>
-                                    <Typography gutterBottom variant="h5" component="div" sx={{color:'gray'}}>
+                                    <Typography gutterBottom variant="h5" component="div" sx={{ color: 'gray' }}>
                                         #{pokemon.id}
                                     </Typography>
                                 </Stack>
                             </CardContent>
-                            {/* <CardActions sx={{ color: '#FEC11E', 
-                                               display: 'flex', 
-                                               flexDirection: 'row', 
-                                               justifyContent:'space-between',
-                                               margin: '10px',
-                                               padding: '0px',
-                                               border: '0px',
-                                               marginTop:'-5px'}}>
-                            {(() => {
-                                    if (favs.includes(pokemon.id)) {
-                                        return <StarIcon onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
-                                    } else {
-                                        return <StarBorderSharpIcon onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
-                                    }
-                                })()}
-                                <Button sx={{ color: 'black' }} size="small" value={pokemon.id} onClick={(e) => handleClick(e)}> <ManageSearchIcon /> Details</Button>
-                            </CardActions> */}
-                           
                         </Card>
-                        <ListItem key={`pokemon_${pokemon.id}`} alignItems="center" sx={{ width: '100%', bgcolor: 'background.paper', height:'130px', display: { xs: 'flex', sm: 'none' } }} >
+                        <ListItem key={`pokemon_${pokemon.id}`} alignItems="center" sx={{ width: '100%', bgcolor: 'background.paper', height: '130px', display: { xs: 'flex', sm: 'none' } }} >
                             <Card sx={{ display: 'flex', width: '93vw', height: '120px' }} key={pokemon.id}>
                                 <CardContent sx={{ flex: '1 1 auto', flexDirection: 'row' }}>
-                                <Stack sx={{ display: 'flex', 
-                                             flexDirection: 'row', 
-                                             justifyContent: 'space-between', 
-                                             margin: '0px',
-                                             padding: '0px',
-                                             border: '0px',
-                                             marginLeft: '10px',
-                                             marginRight: '20px'}}>
-                                    <Typography gutterBottom variant="h5" component="div" sx={{color:'gray'}}>
-                                        #{pokemon.id}
-                                    </Typography>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {(() => {
-                                        if (favs.includes(pokemon.id)) {
-                                            return <StarIcon sx={{marginBottom:'-3px'}} onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
-                                        } else {
-                                            return <StarBorderSharpIcon sx={{marginBottom:'-3px'}} onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
-                                        }
-                                        })()}
-                                        {upperFirstLetter(pokemon.name)}
-                                    </Typography>
-                                </Stack>
-                                <Stack sx={{ display: 'flex', 
-                                             flexDirection: 'row', 
-                                             justifyContent: 'center', 
-                                          }}>
-                                    <Typography variant="subtitle1" color="text.secondary" component="div" sx={{}}>
-                                        {pokemon.pokemon_v2_pokemontypes.map((type_, i) => {
-                                            const type_name = String(type_.pokemon_v2_type.name)
-                                            //console.log('TYPE IS', type_name)
-                                            const TypeComponent = typeComponents[type_name];
-                                            return (<Chip sx={{ backgroundColor: typeColors[type_name], color: 'white', marginTop: '10px', marginLeft: '10px', marginRight: '10px'}}
-                                                icon={<TypeComponent style={{ width: '15px', color: 'white' }} />}
-                                                label={type_name}
-                                                key={"type" + i}
-                                            />)
-                                        }
-                                        )
-                                        }
-                                    </Typography>
+                                    <Stack sx={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        margin: '0px',
+                                        padding: '0px',
+                                        border: '0px',
+                                        marginLeft: '10px',
+                                        marginRight: '20px'
+                                    }}>
+                                        <Typography gutterBottom variant="h6" component="div" sx={{ color: 'gray' }}>
+                                            #{pokemon.id}
+                                        </Typography>
+                                        <Typography gutterBottom variant="h6" component="div">
+                                            {(() => {
+                                                if (favs.includes(pokemon.id)) {
+                                                    return <StarIcon sx={{ marginBottom: '-3px' }} onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
+                                                } else {
+                                                    return <StarBorderSharpIcon sx={{ marginBottom: '-3px' }} onClick={(e) => dispatch({ type: 'setFav', value: pokemon.id })} />
+                                                }
+                                            })()}
+                                            {upperFirstLetter(pokemon.name)}
+                                        </Typography>
+                                    </Stack>
+                                    <Stack sx={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'center',
+                                    }}>
+                                        <Typography variant="subtitle1" color="text.secondary" component="div" sx={{}}>
+                                            {pokemon.pokemon_v2_pokemontypes.map((type_, i) => {
+                                                const type_name = String(type_.pokemon_v2_type.name)
+                                                //console.log('TYPE IS', type_name)
+                                                const TypeComponent = typeComponents[type_name];
+                                                return (<Chip sx={{ backgroundColor: typeColors[type_name], color: 'white', marginTop: '10px', marginLeft: '10px', marginRight: '10px' }}
+                                                    icon={<TypeComponent style={{ width: '15px', color: 'white' }} />}
+                                                    label={type_name}
+                                                    key={"type" + i}
+                                                />)
+                                            }
+                                            )
+                                            }
+                                        </Typography>
                                     </Stack>
                                 </CardContent>
                                 <CardMedia
                                     component="img"
-                                    sx={{ width: '30vw', 
-                                          objectFit: 'contain',
-                                          backgroundImage: `linear-gradient(to right, ${typeTwoColor + '30'}, ${typeOneColor + '30'})`
-                                     }}
+                                    sx={{
+                                        width: '30vw',
+                                        objectFit: 'contain',
+                                        backgroundImage: `linear-gradient(to right, ${typeTwoColor + '30'}, ${typeOneColor + '30'})`
+                                    }}
                                     image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
                                     alt={pokemon.id}
                                     onClick={(e) => handleClick(e)}
