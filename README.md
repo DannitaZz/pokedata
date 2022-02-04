@@ -35,8 +35,40 @@ Las credenciales de acceso del usuario dummy son:
 8. Opción de filtrar los pokémon por tipo.
 9. Animaciones de transición entre vista principal y vista de detalles. 
 
+## Screenshots 
+
+### Mobile
+
+- Vista principal
+![](https://i.imgur.com/Llyfq00.jpg)
+- Vista de favoritos
+![](https://i.imgur.com/ZjzRJCY.jpg)
+- Vista detalles
+![](https://i.imgur.com/u5du2Fv.png)
+- Filtros
+![](https://i.imgur.com/0WYrI0P.jpg)
+- Busqueda 
+![](https://i.imgur.com/Dswji41.jpg)
+
+### Desktop
+
+- Vista principal
+![](https://i.imgur.com/vdmUEvp.png)
+- Vista de favoritos
+![](https://i.imgur.com/bqMVe7O.png)
+- Vista detalles
+![](https://i.imgur.com/iNjLuQ2.png)
+- Filtros
+![](https://i.imgur.com/fa7f1pe.png)
+- Busqueda
+![](https://i.imgur.com/v246OmG.png)
+
 
 ## Prospectos
 
 - Agregar más información a la vista detalles.
 - Convertirla en PWA.
+
+## Creditos
+
+Iconos de tipo de pokemon tomados de [duiker101](https://github.com/duiker101/pokemon-type-svg-icons)

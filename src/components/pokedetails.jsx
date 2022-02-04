@@ -107,7 +107,7 @@ function Pokedetails({ pokemon, dispatch }) {
         ["Spd", Number(pokemon.stats[5].base_stat), `color: ${typeTwoColor}`, null],
     ];
     const options = {
-        chartArea: { width: "70%" },
+        chartArea: {left:"30%", top:"100px", width: "50%", height:"300px" },
         isStacked: true,
         hAxis: {
             minValue: 0,
@@ -169,11 +169,11 @@ function Pokedetails({ pokemon, dispatch }) {
                             image={pokemon && pokemon.sprites.other["official-artwork"].front_default}
                             alt="pokemon"
                         />
-                        <Stack sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', margin: '10px' }}>
-                            <Typography component="div" variant="h5" textAlign='center' sx={{ fontWeight: 'bold' }}>
+                        <Stack sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', margin: '10px'}}>
+                            <Typography component="div" variant="h5" textAlign='center' sx={{ fontWeight: 'bold', paddingRight:'10px' }}>
                                 {upperFirstLetter(pokemon.name)}
                             </Typography>
-                            <Typography component="div" variant="h5" textAlign='center' sx={{ color: 'gray' }}>
+                            <Typography component="div" variant="h5" textAlign='center' sx={{ color: 'gray', paddingLeft:'10px' }}>
                                 #{id}
                             </Typography>
                         </Stack>
@@ -193,16 +193,12 @@ function Pokedetails({ pokemon, dispatch }) {
                             }
                         </Typography>
                             <Chart className='chart'
-                                chartType="BarChart"
-                                width="60%"
-                                height="30vh"
-                                data={data}
-                                options={options}
-                                style={{
-                                    width: "fit-content",
-                                    margin: "0 auto"
-                                }}
-                            />
+                                    chartType="BarChart"
+                                    // width="8%"
+                                    // height="55%"
+                                    data={data}
+                                    options={options}
+                                />
                     </CardContent>
                 </Card>
             </div>

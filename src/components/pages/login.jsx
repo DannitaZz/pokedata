@@ -74,7 +74,7 @@ export default function SignIn({state, dispatch}) {
             required
             fullWidth
             id="email"
-            label="e-mail"
+            label="Username"
             name="email"
             autoFocus
           />
