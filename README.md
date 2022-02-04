@@ -1,4 +1,4 @@
-![Pokemon](https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg =100x) \
+![Pokemon](https://styles.redditmedia.com/t5_lj07n/styles/communityIcon_vdx0xkv8mx811.png?width=256&s=94815983545aa907437e525afddf6430f8a1de1e) 
 
 # PokeData
 
