@@ -156,8 +156,8 @@ function Pokelist({ favs, data, page, pageSize, dispatch }) {
                             </CardActions>
                            
                         </Card>
-                        <ListItem key={`pokemon_${pokemon.id}`} alignItems="center" sx={{ width: '100%', bgcolor: 'background.paper', height:'17.5vh', display: { xs: 'flex', sm: 'none' } }} >
-                            <Card sx={{ display: 'flex', width: '93vw', height: '15vh' }} key={pokemon.id}>
+                        <ListItem key={`pokemon_${pokemon.id}`} alignItems="center" sx={{ width: '100%', bgcolor: 'background.paper', height:'150px', display: { xs: 'flex', sm: 'none' } }} >
+                            <Card sx={{ display: 'flex', width: '93vw', height: '140px' }} key={pokemon.id}>
                                 <CardContent sx={{ flex: '1 1 auto', flexDirection: 'row' }}>
                                 <Stack sx={{ display: 'flex', 
                                              flexDirection: 'row', 
