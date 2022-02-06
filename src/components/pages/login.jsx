@@ -85,6 +85,7 @@ export default function SignIn({state, dispatch}) {
             name="password"
             label="Password"
             id="password"
+            type="password"
           />
           <Button
             type="submit"
