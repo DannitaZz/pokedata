@@ -12,9 +12,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 export default function FixedBottomNavigation({dispatch}) {
     const navigateTo = useNavigate();
     let location = useLocation();
-    /* console.log('Location', location) */
   return (
-    <Box sx={{ pb: 7, flexGrow: 1, display: { xs: 'flex', lg: 'none' }}} /* ref={ref} */>
+    <Box sx={{ pb: 7, flexGrow: 1, display: { xs: 'flex', lg: 'none' }}}>
       <CssBaseline />
       <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
         <BottomNavigation

@@ -44,10 +44,8 @@ export default function SignIn({state, dispatch}) {
 
     if (((currentUser===realUser) && (currentPass===realPass))){
       dispatch({type:'login'})
-      //console.log('correct credentials')
       navigateTo('/')
     } else{
-      //console.log('bad credentials')
     }    
   };
 

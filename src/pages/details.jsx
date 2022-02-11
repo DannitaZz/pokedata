@@ -1,6 +1,6 @@
-import FixedBottomNavigation from "../bottombar"
-import ResponsiveAppBar from "../navbar"
-import  Pokedetails  from "../pokedetails"
+import FixedBottomNavigation from "../components/bottombar"
+import ResponsiveAppBar from "../components/navbar"
+import  Pokedetails  from "../components/pokedetails"
 
 
 

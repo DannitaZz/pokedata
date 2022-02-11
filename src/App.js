@@ -2,9 +2,9 @@ import React, { useReducer } from 'react';
 import './App.css';
 import { reducer, initialState } from './hooks/reducer';
 import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
-import Pokemon from './components/pages/pokemon';
-import Details from './components/pages/details';
-import SignIn from './components/pages/login';
+import Pokemon from './pages/pokemon';
+import Details from './pages/details';
+import SignIn from './pages/login';
 
 const AuthPokemon = ({state, dispatch}) => {
   if(state.login === 'true'){

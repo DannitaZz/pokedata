@@ -92,7 +92,6 @@ function Pokelist({ favs, data, page, pageSize, dispatch }) {
     }
     function handleClick(e) {
         const id = e.currentTarget.alt
-        //console.log('id', id)
         navigateTo(`/${id}`);
     }
     return (
@@ -126,14 +125,13 @@ function Pokelist({ favs, data, page, pageSize, dispatch }) {
                                     padding: '0px',
                                     border: '0px',
                                     objectFit: 'contain',
-                                    backgroundImage: `linear-gradient(to right, ${typeTwoColor + '30'}, ${typeOneColor + '30'})`// {typeOneColor}
+                                    backgroundImage: `linear-gradient(to right, ${typeTwoColor + '30'}, ${typeOneColor + '30'})`
                                 }}
                             />
                             <CardContent>
                                 <Typography variant="body2" color="text.secondary" component="div">
                                     {pokemon.pokemon_v2_pokemontypes.map((type_, i) => {
                                         const type_name = String(type_.pokemon_v2_type.name)
-                                        // console.log('TYPE IS', type_name)
                                         const TypeComponent = typeComponents[type_name];
                                         return (<Chip sx={{ backgroundColor: typeColors[type_name], color: 'white', marginLeft: '10px', marginRight: '10px', marginTop: '0px', marginBottom: '15px' }}
                                             icon={<TypeComponent style={{ width: '15px', color: 'white' }} />}
@@ -203,7 +201,6 @@ function Pokelist({ favs, data, page, pageSize, dispatch }) {
                                         <Typography variant="subtitle1" color="text.secondary" component="div" sx={{}}>
                                             {pokemon.pokemon_v2_pokemontypes.map((type_, i) => {
                                                 const type_name = String(type_.pokemon_v2_type.name)
-                                                //console.log('TYPE IS', type_name)
                                                 const TypeComponent = typeComponents[type_name];
                                                 return (<Chip sx={{ backgroundColor: typeColors[type_name], color: 'white', marginTop: '10px', marginLeft: '10px', marginRight: '10px' }}
                                                     icon={<TypeComponent style={{ width: '15px', color: 'white' }} />}

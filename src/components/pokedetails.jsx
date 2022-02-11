@@ -78,7 +78,6 @@ function Pokedetails({ pokemon, dispatch }) {
     let typeOneColor
     let typeTwoColor
     const highestStat = Math.max(...pokemon.stats.map((item) => item.base_stat))
-    // console.log(highestStat)
 
     if (pokemon.types.length === 2) {
         typeOneColor = typeColors[String(pokemon.types[0].type.name)]
@@ -137,7 +136,6 @@ function Pokedetails({ pokemon, dispatch }) {
             try {
                 const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/`);
                 const fulldata = response.data;
-                //console.log('Pokemon: ', fulldata);
                 dispatch({ type: 'getPokemon', pokemon: fulldata });
             } catch (error) {
                 console.error(error);
@@ -164,7 +162,7 @@ function Pokedetails({ pokemon, dispatch }) {
                                 padding: '10px',
                                 border: '0px',
                                 objectFit: 'contain',
-                                backgroundImage: `linear-gradient(to right, ${typeOneColor + '30'}, ${typeTwoColor + '30'})`// {typeOneColor}
+                                backgroundImage: `linear-gradient(to right, ${typeOneColor + '30'}, ${typeTwoColor + '30'})`
                             }}
                             image={pokemon && pokemon.sprites.other["official-artwork"].front_default}
                             alt="pokemon"
@@ -181,7 +179,6 @@ function Pokedetails({ pokemon, dispatch }) {
                         <Typography component="div" variant="p" textAlign='center'>
                             {pokemon && pokemon.types.map((type_, i) => {
                                 const type_name = String(type_.type.name)
-                                //console.log('TYPE IS', type_name)
                                 const TypeComponent = typeComponents[type_name];
                                 return (<Chip sx={{ backgroundColor: typeColors[type_name], color: 'white', margin: '10px' }}
                                     icon={<TypeComponent style={{ width: '15px', color: 'white' }} />}
@@ -194,8 +191,6 @@ function Pokedetails({ pokemon, dispatch }) {
                         </Typography>
                             <Chart className='chart'
                                     chartType="BarChart"
-                                    // width="8%"
-                                    // height="55%"
                                     data={data}
                                     options={options}
                                 />

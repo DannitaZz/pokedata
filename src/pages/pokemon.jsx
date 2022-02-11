@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import ResponsiveAppBar from "../navbar"
-import PaginationControlled from "../pagination"
-import Pokelist from "../pokelist"
-import FixedBottomNavigation from '../bottombar';
-import {getLocalStorageObj} from '../../utils'
-// import { useNavigate } from "react-router-dom"
-// import { checkLogin } from '../../utils';
+import ResponsiveAppBar from "../components/navbar"
+import PaginationControlled from "../components/pagination"
+import Pokelist from "../components/pokelist"
+import FixedBottomNavigation from '../components/bottombar';
+import {getLocalStorageObj} from '../utils'
 
 const nameFilter = (name, data) => (
   data.filter(item=>(
@@ -40,15 +38,12 @@ const typeFilter = (type, data) => {
 
 function Pokemon({favs, actionName, data, page, filterState, dispatch}) {
 
-  // checkLogin(useNavigate)
-
   const pokeCount = 898
   const pageSize = 20;
   let filteredData =  data
   
   filteredData = nameFilter(filterState.name, filteredData)
   filteredData = typeFilter(filterState.type, filteredData)
-  // console.log(filteredData[34])
 
   const pageCount = Math.round(filteredData.length / pageSize)
 

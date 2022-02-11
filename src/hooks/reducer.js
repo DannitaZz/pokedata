@@ -40,7 +40,6 @@ function arrayRemove(arr, value) {
     });
 }
 
-// const pageSize = 20;
 export const reducer = (state, action) => {
     switch (action.type) {
         case 'getData':
@@ -52,7 +51,6 @@ export const reducer = (state, action) => {
             return {...state, favPage: {...state.favPage, page: action.page}} 
         case 'getPokemon':
             const pokemon = action.pokemon;
-            //console.log('El pokemon es: ',  pokemon.name)
             return {...state, detailPage: {pokemon: pokemon}}    
         case 'setFav':
             const id = action.value;
@@ -77,74 +75,20 @@ export const reducer = (state, action) => {
             return {...state, filterState: {...state.filterState, name: action.value}, mainPage: {...state.mainPage, page: 1}, favPage: {...state.favPage, page: 1}}
         case 'filterType':
             let newType = action.value
-            // console.log(newType)
             if (newType === state.filterState.type){
                 newType = 'all'
             } else if(types_list.includes(newType)){
-                //console.log(newType)
             } else {
                 newType = 'all'
             }
             return {...state, filterState: {...state.filterState, type: newType}, mainPage: {...state.mainPage, page: 1}, favPage: {...state.favPage, page: 1}}
         case 'login':
-            //console.log('login got to the reducer')
             localStorage.setItem('login', 'true')
             return {...state, login:'true'}
         case 'logout':
-                //console.log('logout got to the reducer')
                 localStorage.removeItem('login')
                 return {...state, login:false}
-            // case 'gen':
-        //     return {...state, filterState: {gen: action.value}}              
-            // const generation = action.generation;
-            // console.log('Generación: ', generation)
-            // const filterData = data.filter((pokemon)=> pokemon.pokemon_v2_pokemontypes[0].pokemon_v2_generation.name === generation);
-            // return {...state, mainPage: {currentData: filterData}}
         default:
            return {...state}
     }
 }
-
-// const pageSize = 20;
-// export const reducer = (state, action) => {
-//     switch (action.type) {
-//         case 'getData':
-//             const data = action.data;
-//             const dummyFavs = Array(data.length).fill(false);
-//             return {...state, data: data, currentData: data.slice(0, 20), favs: dummyFavs}
-//         case 'setPage':
-//             const page = action.page;
-//             const currentIndex =  (page*pageSize)-20;
-//             const pokeData = JSON.parse(JSON.stringify(state.data));
-//             const currentData = pokeData.slice(currentIndex, currentIndex + 20);
-//             return {...state, page: page, currentData: currentData}  
-//         case 'favs':
-//             const id = action.value;
-//             const index = id - 1
-//             const currentFavs = JSON.parse(JSON.stringify(state.favs));
-//             const currentPokeEntry =  JSON.parse(JSON.stringify(state.data[index]));
-//             currentFavs[index] = currentPokeEntry;
-//             console.log(currentFavs.filter(filterFav))
-//             return {...state, favs: currentFavs}
-//             // const id = action.value;
-//             // let currentFavs = JSON.parse(JSON.stringify(state.favs));
-//             // const currentPokefavs = JSON.parse(JSON.stringify(state.pokeFavs));
-
-//             // if (currentFavs.includes(id)) {
-//             //     currentFavs = arrayRemove(currentFavs, id);
-//             // } else {
-//             //     currentFavs.push(id);
-//             // }
-//             // let newPokefavs= [];
-//             // currentPokefavs.forEach(element => {
-//             //     if (currentFavs.includes(element.id)) {
-//             //         newPokefavs.push(element);
-//             //     }
-//             // });
-//             // console.log('favs', currentFavs)
-//             // console.log('pokefavs', newPokefavs)
-//             // return {...state, favs: currentFavs, pokeFavs: newPokefavs}
-//         default:
-//            return {...state}
-//     }
-// }
