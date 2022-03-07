@@ -29,7 +29,7 @@ function Copyright(props) {
   );
 }
 
-export default function SignIn({state, dispatch}) {
+export default function SignIn({ state, dispatch }) {
   const navigateTo = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -42,16 +42,16 @@ export default function SignIn({state, dispatch}) {
     const currentUser = user.email
     const currentPass = user.password
 
-    if (((currentUser===realUser) && (currentPass===realPass))){
-      dispatch({type:'login'})
+    if (((currentUser === realUser) && (currentPass === realPass))) {
+      dispatch({ type: 'login' })
       navigateTo('/')
-    } else{
-    }    
+    } else {
+    }
   };
 
   return (
     <Container className="fade-in" component="main" maxWidth="xs">
-      
+
       <Box
         sx={{
           marginTop: 8,
@@ -93,9 +93,14 @@ export default function SignIn({state, dispatch}) {
           >
             Sign In
           </Button>
+          <Typography component="div" variant="p">
+            Credentials:
+            <li>Username: ash_ketchum</li>
+            <li>Password: pikachu123</li>
+          </Typography>
         </Box>
       </Box>
       <Copyright sx={{ mt: 8, mb: 4 }} />
     </Container>
-);
+  );
 }
